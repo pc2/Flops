@@ -18,4 +18,3 @@ flags="-O2 -lpthread -std=c++11" #
 #$CXX Source/*.cpp -o "${basepath}2017-Zen"             $flags -march=znver1         -D "x64_2017_Zen" #
 #$CXX Source/*.cpp -o "${basepath}2016-KnightsLanding"  $flags -march=knl            -D "x64_2016_KnightsLanding" #
 $CXX Source/*.cpp -o "${basepath}2017-SkylakePurley"   $flags -march=skylake-avx512 -D "x64_2017_SkylakePurley" #
-#
