@@ -24,12 +24,12 @@ struct Result{
 };
 class Benchmark{
 public:
-    Benchmark(uint64_t flops_per_iteration);
+    Benchmark(double flops_per_iteration);
 
     Result bench(double seconds);
     Result bench(double seconds, size_t threads);
 
-    void run(const char* label, size_t threads, double seconds = 4);
+    void run(const char* label, size_t threads, double seconds = 30);
 
 protected:
     virtual double run_kernel(size_t iterations) const = 0;
@@ -37,7 +37,7 @@ protected:
 private:
     class BenchThread;
 
-    const uint64_t m_flops_per_iteration;
+    const double m_flops_per_iteration;
     const size_t m_block_size;
 };
 ////////////////////////////////////////////////////////////////////////////////

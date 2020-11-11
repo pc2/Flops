@@ -24,7 +24,7 @@
 
 int main(){
 
-    Flops::run(1);
+//    Flops::run(1);
     Flops::run(std::thread::hardware_concurrency());
 
 

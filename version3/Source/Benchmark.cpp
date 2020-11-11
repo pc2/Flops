@@ -41,6 +41,7 @@ public:
             sum += m_benchmark.run_kernel(block_size);
             iterations++;
         }
+        std::cout << "iterations2="<< iterations<< std::endl;
 
         m_fp_ops = iterations * m_benchmark.m_flops_per_iteration * block_size;
         m_sum = sum;
@@ -55,9 +56,9 @@ public:
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-Benchmark::Benchmark(uint64_t flops_per_iteration)
+Benchmark::Benchmark(double flops_per_iteration)
     : m_flops_per_iteration(flops_per_iteration)
-    , m_block_size(1000000)
+    , m_block_size(2000000000)
 {}
 Result Benchmark::bench(double seconds){
     std::chrono::duration<double> duration(seconds);
@@ -70,6 +71,7 @@ Result Benchmark::bench(double seconds){
         iterations++;
         clock = std::chrono::system_clock::now() - start;
     }while (clock < duration);
+    std::cout << "iterations="<< iterations<< std::endl;
     return Result{iterations * m_flops_per_iteration * m_block_size / seconds, sum};
 }
 Result Benchmark::bench(double seconds, size_t threads){
@@ -102,7 +104,7 @@ Result Benchmark::bench(double seconds, size_t threads){
 void Benchmark::run(const char* label, size_t threads, double seconds){
     std::cout << label << std::endl;
     Result result = bench(seconds, threads);
-    std::cout << "    GFlops = " << result.flops / 1000000000 << std::endl;
+    std::cout << "    GFlops = " << result.flops << std::endl;
     std::cout << "    Result = " << result.sum << std::endl;
     std::cout << std::endl;
 }
